@@ -1,1 +1,1 @@
-# New Struggle Dataset
+# EvoStruggle Dataset
