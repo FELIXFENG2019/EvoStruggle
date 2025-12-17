@@ -145,34 +145,7 @@ Use this file to run both evaluation settings.
 
 **[Hugging Face Dataset](https://huggingface.co/datasets/Shijia2025/EvoStruggle)** - Contains 360p resized videos
 
-#### Using the `datasets` library
-```python
-from datasets import load_dataset
-
-# Load the dataset
-dataset = load_dataset("Shijia2025/EvoStruggle")
-
-# Access the data
-print(dataset)
-```
-
-**Installation:**
-
-If you don't have the `datasets` library installed:
-```bash
-pip install datasets
-```
-
-#### Using Git LFS (Alternative)
-
-If you prefer to clone the repository directly:
-```bash
-# Make sure you have git-lfs installed (https://git-lfs.com)
-git lfs install
-
-# Clone the repository
-git clone https://huggingface.co/datasets/Shijia2025/EvoStruggle
-```
+Please refer to [Downloading Datasets](https://huggingface.co/docs/hub/en/datasets-downloading) documents on Hugging Face to find the suitable command to download the dataset. 
 
 ---
 
