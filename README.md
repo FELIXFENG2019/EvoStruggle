@@ -180,6 +180,6 @@ Choose between the full 1080p version or the compressed 360p version:
 ```
 
 ## License
-The code in this repository is released under the MIT License (see `LICENSE`).
+The code in this repository is released under the Apache-2.0 License (see `LICENSE`).
 The EvoStruggle dataset is released under CC BY-NC 4.0 (see `LICENSE-DATASET.md`).
 If you use this dataset, please cite our paper.
