@@ -177,6 +177,15 @@ Choose between the full 1080p version or the compressed 360p version:
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2510.01362}, 
 }
+
+@inproceedings{feng2026evostruggle,
+  title={Evostruggle: a dataset capturing the evolution of struggle across activities and skill levels},
+  author={Feng, Shijia and Wray, Michael and Mayol-Cuevas, Walterio},
+  booktitle={International Conference on Pattern Recognition},
+  pages={96--111},
+  year={2026},
+  organization={Springer}
+}
 ```
 
 ## License
