@@ -6,10 +6,13 @@ import numpy as np
 import pandas as pd
 
 
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+
 parser = argparse.ArgumentParser(description='Codes for splitting the train/validation/test data for training on separate attempts')
 parser.add_argument('-domain_name', '-dname', type=str, default="Origami", choices=['Origami', 'Shuffle_Cards', 'Tangram', 'Tying_Knots'])
-parser.add_argument('-split_path', '-spath', type=str, default="/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/splits/separate_attempts/")
-parser.add_argument('-save_path', '-save', type=str, default="/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/splits/separate_attempts/")
+parser.add_argument('-split_path', '-spath', type=str, default=os.path.join(REPO_ROOT, 'splits', 'separate_attempts'))
+parser.add_argument('-save_path', '-save', type=str, default=os.path.join(REPO_ROOT, 'splits', 'separate_attempts'))
 parser.add_argument('--save_file_suffix', '-suffix', type=str, default="allattempts_sample01")
 parser.add_argument('--random_seed', '-seed', type=int, default=42)
 args = parser.parse_args()

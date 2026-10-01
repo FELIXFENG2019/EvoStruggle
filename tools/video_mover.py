@@ -1,15 +1,19 @@
 import os
 import csv
+import shutil
 import argparse
+
+
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 parser = argparse.ArgumentParser(description='Codes for moving the video file from backup directory to the workspace directory')
 parser.add_argument('-source_path', '-source', type=str, default="/media/alexa/DATA")
 parser.add_argument('-source_subfolder_name', '-sfname', type=str, default="Origami", choices=['Origami', 'Shuffle_Cards', 'Tangram', 'Tying_Knots'])
-parser.add_argument('-target_path', '-target', type=str, default="/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/data/")
+parser.add_argument('-target_path', '-target', type=str, default=os.path.join(REPO_ROOT, 'data'))
 parser.add_argument('-resolution', '-res', type=str, default="360p", choices=['360p', '1080p'], help='select the resolution of the video to be moved')
 parser.add_argument('-target_subfolder_name', '-tfname', type=str, default="Origami", choices=['Origami', 'Shuffle_Cards', 'Tangram', 'Tying_Knots'])
-parser.add_argument('-annotation_path', '-ann', type=str, default="/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/")
+parser.add_argument('-annotation_path', '-ann', type=str, default=os.path.join(REPO_ROOT, 'annotations'))
 parser.add_argument('-annotation_file', '-annfile', type=str, default="origami_tsa_full.csv", 
                     choices=['origami_tsa_full.csv', 'shufflecards_tsa_full.csv', 'tangram_tsa_full.csv', 'tyingknots_tsa_full.csv'])
 args = parser.parse_args()
@@ -39,16 +43,17 @@ with open(annotation_path, 'r') as f:
             break
         target_video_path = os.path.join(target_path, video_name+'.mp4')
         # copy the video file to the target directory
-        os.system(f'cp {video_path} {target_video_path}')
+        os.makedirs(target_path, exist_ok=True)
+        shutil.copy2(video_path, target_video_path)
         print(f'Video {video_name} is moved to {target_video_path}')
 
 print('All videos are moved successfully!')
 
 # Run this script with the following command:
-# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Origami -target /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/data/ -resolution 360p -target_subfolder_name Origami -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file origami_tsa_full.csv
-# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Shuffle_Cards -target /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/data/ -resolution 360p -target_subfolder_name Shuffle_Cards -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file shufflecards_tsa_full.csv
-# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Tangram -target /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/data/ -resolution 360p -target_subfolder_name Tangram -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file tangram_tsa_full.csv
-# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Tying_Knots -target /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/data/ -resolution 360p -target_subfolder_name Tying_Knots -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file tyingknots_tsa_full.csv
+# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Origami -target ../data/ -resolution 360p -target_subfolder_name Origami -annotation_path ../annotations/ -annotation_file origami_tsa_full.csv
+# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Shuffle_Cards -target ../data/ -resolution 360p -target_subfolder_name Shuffle_Cards -annotation_path ../annotations/ -annotation_file shufflecards_tsa_full.csv
+# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Tangram -target ../data/ -resolution 360p -target_subfolder_name Tangram -annotation_path ../annotations/ -annotation_file tangram_tsa_full.csv
+# python video_mover.py -source /media/alexa/DATA -source_subfolder_name Tying_Knots -target ../data/ -resolution 360p -target_subfolder_name Tying_Knots -annotation_path ../annotations/ -annotation_file tyingknots_tsa_full.csv
 
 # The script will move the video files from the backup directory to the workspace directory based on the annotation csv file.
 

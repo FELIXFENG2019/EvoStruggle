@@ -8,12 +8,15 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+
 parser = argparse.ArgumentParser(description='Codes for splitting the train/test data for in-domain generalization')
 parser.add_argument('-domain_name', '-dname', type=str, default="Origami", choices=['Origami', 'Shuffle_Cards', 'Tangram', 'Tying_Knots'])
-parser.add_argument('-annotation_path', '-ann', type=str, default="/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/")
+parser.add_argument('-annotation_path', '-ann', type=str, default=os.path.join(REPO_ROOT, 'annotations'))
 parser.add_argument('-annotation_file', '-annfile', type=str, default="origami_tsa_full.csv", 
                     choices=['origami_tsa_full.csv', 'shufflecards_tsa_full.csv', 'tangram_tsa_full.csv', 'tyingknots_tsa_full.csv'])
-parser.add_argument('-save_path', '-save', type=str, default="/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/splits/indomain_generalization/")
+parser.add_argument('-save_path', '-save', type=str, default=os.path.join(REPO_ROOT, 'splits', 'indomain_generalization'))
 parser.add_argument('-seed', type=int, default=42)
 parser.add_argument('-trainval_split_ratio', '-splitrate', type=float, default=0.2)
 args = parser.parse_args()
@@ -87,7 +90,7 @@ for subactivity in df['subactivityID'].unique():
     train_df = df.loc[train_idx]
     
     # further split the train set into train and validation sets
-    df_participant = train_df.groupby('participantID', group_keys=True).mean()
+    df_participant = train_df.groupby('participantID', group_keys=True).mean(numeric_only=True)
     train_participant_df, val_participant_df = train_test_split(
         df_participant, 
         test_size=args.trainval_split_ratio, 
@@ -138,9 +141,9 @@ for subactivity in df['subactivityID'].unique():
 print("Done!")
 
 # Run this script with the following command:
-# python indomain_generalization_split_generator.py -domain_name Origami -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file origami_tsa_full.csv -save_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/splits/indomain_generalization/
-# python indomain_generalization_split_generator.py -domain_name Shuffle_Cards -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file shufflecards_tsa_full.csv -save_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/splits/indomain_generalization/
-# python indomain_generalization_split_generator.py -domain_name Tangram -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file tangram_tsa_full.csv -save_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/splits/indomain_generalization/
-# python indomain_generalization_split_generator.py -domain_name Tying_Knots -annotation_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/annotations/ -annotation_file tyingknots_tsa_full.csv -save_path /media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Origami -annotation_path ../annotations/ -annotation_file origami_tsa_full.csv -save_path ../splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Shuffle_Cards -annotation_path ../annotations/ -annotation_file shufflecards_tsa_full.csv -save_path ../splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Tangram -annotation_path ../annotations/ -annotation_file tangram_tsa_full.csv -save_path ../splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Tying_Knots -annotation_path ../annotations/ -annotation_file tyingknots_tsa_full.csv -save_path ../splits/indomain_generalization/
 
     
