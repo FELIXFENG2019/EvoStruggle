@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+
+# Downloaded videos and extracted features
+data/**/*.mp4
+extracted_features/**/*.npy
+
+# Output of the split generator scripts (kept apart from the official splits/)
+regenerated_splits/

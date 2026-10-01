@@ -14,6 +14,8 @@ import torchvision.transforms as T
 from pytorchvideo.data import UniformClipSampler
 
 
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 
 def get_arguments():
     '''
@@ -24,9 +26,9 @@ def get_arguments():
     parser = argparse.ArgumentParser(
         description='feature extraction')
     parser.add_argument(
-        '--dataset_dir', type=str, default='/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/', help='path to dataset directory')
+        '--dataset_dir', type=str, default=REPO_ROOT, help='path to dataset directory')
     parser.add_argument(
-        '--save_dir', type=str, default='/media/alexa/WORKSPACE/Shijia-stage-two/new_struggle_dataset/extracted_features', 
+        '--save_dir', type=str, default=os.path.join(REPO_ROOT, 'extracted_features'), 
         help='path to the directory you want to save video features')
     parser.add_argument(
         '--task', type=str, default='Origami', help='task name', choices=['Origami', 'Shuffle_Cards', 'Tangram', 'Tying_Knots'])

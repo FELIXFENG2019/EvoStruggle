@@ -1,10 +1,29 @@
 # EvoStruggle Dataset
 
+[![arXiv](https://img.shields.io/badge/arXiv-2510.01362-b31b1b.svg)](https://arxiv.org/abs/2510.01362)
+[![ICPR 2026](https://img.shields.io/badge/ICPR-2026-blue.svg)](#citation)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow.svg)](https://huggingface.co/datasets/Shijia2025/EvoStruggle)
+[![Code: StruggleTAL](https://img.shields.io/badge/Code-StruggleTAL-black.svg?logo=github)](https://github.com/FELIXFENG2019/StruggleTAL)
+[![Promo Video](https://img.shields.io/badge/YouTube-Promo%20Video-red.svg?logo=youtube)](https://youtu.be/UmTwZx0y9ZE)
+[![Dataset License: CC BY-NC 4.0](https://img.shields.io/badge/Data%20License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE-DATASET.md)
+[![Code License: Apache 2.0](https://img.shields.io/badge/Code%20License-Apache%202.0-green.svg)](LICENSE)
+
 Data of video recordings of manual activities of various people performing manual tasks from a first-person perspective. Activities include origami, card shuffling, tangrams and knot tying.
 
-Please see the paper ["EvoStruggle: A Dataset Capturing the Evolution of Struggle across Activities and Skill Levels"](https://arxiv.org/abs/2510.01362) for more details. The [EvoStruggle Dataset Promo Video](https://youtu.be/UmTwZx0y9ZE) is available on YouTube. 
+Please see the paper ["EvoStruggle: A Dataset Capturing the Evolution of Struggle across Activities and Skill Levels"](https://arxiv.org/abs/2510.01362) (ICPR 2026) for more details. The [EvoStruggle Dataset Promo Video](https://youtu.be/UmTwZx0y9ZE) is available on YouTube.
 
 A related talk was given by Prof Walterio Mayol - [Keynote: From Skill to Struggle at the ICCV 2025 SAUAFG Workshop](https://www.youtube.com/watch?v=4HWLiCvc0LU&t=48s).
+
+**Contents:**
+[Introduction](#introduction-of-the-struggle-determination) ·
+[Dataset at a Glance](#whats-new-in-this-dataset) ·
+[Download](#how-to-download) ·
+[Quick Start](#quick-start) ·
+[Usage of the Data](#usage-of-the-data) ·
+[Repository Structure](#repository-structure) ·
+[Citation](#citation) ·
+[License](#license) ·
+[Contact](#contact)
 
 ## Introduction of the Struggle Determination
 
@@ -15,11 +34,11 @@ A related talk was given by Prof Walterio Mayol - [Keynote: From Skill to Strugg
 
 In this work, **struggle** is defined as *observable difficulty* in completing a given activity. It may be characterized by one or more of the following indicators:
 
-* Motor hesitation of the hands  
-* Repeated attempts  
-* Prolonged actions  
-* Body-gesture signs of frustration (e.g., hand and/or head movements)  
-* Disruptive errors and pauses  
+* Motor hesitation of the hands
+* Repeated attempts
+* Prolonged actions
+* Body-gesture signs of frustration (e.g., hand and/or head movements)
+* Disruptive errors and pauses
 
 #### Struggle examples in each of the activities:
 | **1. Tying Knots** | **2. Origami** |
@@ -31,7 +50,7 @@ In this work, **struggle** is defined as *observable difficulty* in completing a
 ## What's new in this dataset?
 * **Over 60 hours video recordings, 2,793 videos, and 5,385 annotated temporal struggle segments from 76 participants.**
 
-* **Evolution of Skill: Five Attempts/Repetitions Each Task.** 
+* **Evolution of Skill: Five Attempts/Repetitions Each Task.**
 
 <video src="https://github.com/user-attachments/assets/ec7015c6-c63b-4e6a-bf4f-26f47e16a39d" controls="controls" width="100%"></video>
 
@@ -52,28 +71,107 @@ In this work, **struggle** is defined as *observable difficulty* in completing a
 | Tangram       | 01: Runner · 02: Kangaroo · 03: Cyclist · 04: Microscope                               |
 | Tying Knots   | 01: Ashley Bend · 02: Blakes Hitch · 03: Carrick Bend · 04: Double Fishermans Bend · 05: Slim Beauty Knot |
 
+### Statistics per Activity
+
+Computed from the annotation files in [`annotations/`](annotations). All videos are recorded at 50 fps.
+
+| Activity      | Annotation file                 | Tasks | Videos | Struggle segments | Videos without struggle | Total duration |
+|---------------|---------------------------------|:-----:|-------:|------------------:|------------------------:|---------------:|
+| Origami       | `origami_tsa_full.csv`          | 4     | 637    | 974               | 197                     | 17.3 h         |
+| Shuffle Cards | `shufflecards_tsa_full.csv`     | 5     | 750    | 2,146             | 83                      | 16.5 h         |
+| Tangram       | `tangram_tsa_full.csv`          | 4     | 600    | 1,098             | 80                      | 14.4 h         |
+| Tying Knots   | `tyingknots_tsa_full.csv`       | 5     | 806    | 1,167             | 137                     | 13.4 h         |
+| **Total**     |                                 | **18**| **2,793** | **5,385**      | **497**                 | **61.7 h**     |
+
+## How to Download
+
+The annotations and data splits are included in this repository. The videos are hosted externally:
+
+| Source | Resolution | Size | Link |
+|--------|-----------|------|------|
+| Hugging Face (recommended) | 360p | – | [Shijia2025/EvoStruggle](https://huggingface.co/datasets/Shijia2025/EvoStruggle) |
+| Baidu NetDisk / 百度网盘 | 360p (compressed `.tar.gz`) | 41.81 GB | [new_struggle_dataset.tar.gz](https://pan.baidu.com/s/1b7HKdpTEapa0GiZaNKRrRQ?pwd=g67j) |
+| Baidu NetDisk / 百度网盘 | 1080p (original recordings) | 1.18 TB | [EvoStruggle_Dataset](https://pan.baidu.com/s/1WuCjys0tBzrS3O2OxttfWQ?pwd=wfak) |
+
+To download from Hugging Face, e.g. with the [`huggingface_hub`](https://huggingface.co/docs/huggingface_hub) CLI:
+
+```bash
+pip install -U huggingface_hub
+huggingface-cli download Shijia2025/EvoStruggle --repo-type dataset --local-dir EvoStruggle
+```
+
+See [Downloading Datasets](https://huggingface.co/docs/hub/en/datasets-downloading) for other options.
+
+**Note:** The original 1080p recordings are currently only available via Baidu NetDisk.
+
+## Quick Start
+
+Clone this repository to get the annotations and splits:
+
+```bash
+git clone https://github.com/FELIXFENG2019/EvoStruggle.git
+cd EvoStruggle
+```
+
+Load the struggle annotations of one activity (list-valued columns are stored as JSON strings):
+
+```python
+import json
+import pandas as pd
+
+df = pd.read_csv("annotations/origami_tsa_full.csv")
+for col in ["keyframes", "keyframes(frames)", "struggle", "struggle(frames)"]:
+    df[col] = df[col].apply(json.loads)
+
+row = df.iloc[0]
+print(row["video_name"], row["duration"], row["fps"])  # 01_01_01 83.66 50
+print(row["struggle"])  # [[16.184, 21.79392], [45.16892, 59.16892], [69.97771, 75.85271]]
+```
+
+Load a benchmark split (ActivityNet-style JSON, directly usable by temporal action localization codebases such as [StruggleTAL](https://github.com/FELIXFENG2019/StruggleTAL)):
+
+```python
+import json
+
+with open("splits/separate_attempts/Origami/Origami_sepattempt.json") as f:
+    split = json.load(f)
+
+for video_name, info in split["database"].items():
+    subset = info["subset"]  # e.g. "train_attempt01", "validation"
+    segments = [ann["segment"] for ann in info["annotations"]]  # [[start_sec, end_sec], ...]
+```
+
 ## Usage of the Data
 
 This section describes the annotation format, video naming convention, and data splits used in the Struggle Temporal Action Localization (Struggle TAL) task.
 
 ### 1. Annotations
 
-The annotation files provide metadata for **struggle moments** in each video, including:
+There is one annotation file per activity in [`annotations/`](annotations). Each row corresponds to one video:
 
-- **Start time** of a struggle segment  
-- **End time** of a struggle segment  
+| Column | Description |
+|--------|-------------|
+| `video_name` | Video identifier, see [Video Naming Convention](#2-video-naming-convention) |
+| `duration` | Video duration in seconds |
+| `fps` | Frame rate (50 for all videos) |
+| `keyframes` | Keyframe timestamps (seconds) marked during annotation; they lie within the struggle segments |
+| `keyframes(frames)` | Same keyframes as frame indices |
+| `struggle` | Struggle segments as `[[start, end], ...]` in seconds |
+| `struggle(frames)` | Same struggle segments as frame indices |
 
-These timestamps indicate when observable struggle occurs during task execution.
+Videos without any observed struggle have empty lists (`[]`). There is a single action class, `Struggle` (see [`annotations/category_idx.txt`](annotations/category_idx.txt)).
 
-### 2. Video Naming Convention 
+### 2. Video Naming Convention
 
-Each video follows the naming format: <participant_id><task_index><attempt_id>, where
+Each video follows the naming format `<participant_id>_<task_index>_<attempt_id>`, where
 - `participant_id`: two-digit participant identifier (e.g. `01`)
 - `task_index`: two-digit index of the task within the corresponding activity (as listed above)
 - `attempt_id`: repetition number of the task, ranging from `01` to `05`
 
-**Example:**  
+**Example:**
 `01_03_04` denotes *participant 01* performing *task 03* (e.g. Helmet, Ribbon Spread and Wave, Cyclist, or Carrick Bend, depending on the activity) on the *fourth attempt*.
+
+Video names are only unique within an activity, so always use them together with the activity name.
 
 ### 3. Code Release
 
@@ -87,77 +185,84 @@ This repository can be used to reproduce the experimental results reported in th
 
 We provide **three types of data splits** for different training and evaluation settings (see *Figure 6* in the paper for a visual overview).
 
+> **Note:** The files in `splits/` are the official splits used in the paper. Please use them as provided so that results are comparable with the paper and with other work.
+
+All JSON split files share the same structure:
+
+```json
+{
+  "version": "...",
+  "database": {
+    "<video_name>": {
+      "subset": "train",
+      "duration": 83.66,
+      "fps": 50,
+      "annotations": [
+        {"label": "Struggle", "segment": [16.184, 21.79392], "segment(frames)": [809, 1090], "label_id": 1}
+      ]
+    }
+  }
+}
+```
+
+The CSV files next to each JSON file list the videos (with their annotations and metadata) in each subset. The JSON files were generated from them with the scripts in [`tools/`](tools).
+
+| Setting | Directory | JSON file | `subset` values | Video key |
+|---------|-----------|-----------|-----------------|-----------|
+| Activity-level generalization | `splits/crossdomain_generalization/<Activity>/` | `<Activity>_crossdomain_testonvalonly.json` *(recommended)* | `train`, `validation`, `test` | `<Activity>-<video_name>` |
+| | | `<Activity>_crossdomain.json` | `train`, `validation`, `test_subactivity<XX>` | `<Activity>-<video_name>` |
+| Task-level generalization | `splits/indomain_generalization/<Activity>/` | `<Activity>_subactivity<XX>_data.json` | `Train`, `Validation`, `Test` | `<video_name>` |
+| Within-activity / separate attempts | `splits/separate_attempts/<Activity>/` | `<Activity>_sepattempt.json` | `train_attempt01` … `train_attempt05`, `validation` | `<video_name>` |
+| | | `<Activity>_allattempts_sample0{1,2,3}.json` | `train`, `validation` | `<video_name>` |
+
+`<Activity>` is one of `Origami`, `Shuffle_Cards`, `Tangram`, `Tying_Knots`.
+
 #### 4.1 Activity-Level Generalization (Cross-Domain)
 
-**Directory**:
-splits/crossdomain_generalization
+**Directory**: `splits/crossdomain_generalization`
 
-**Description**:  
-These splits are used for **Activity-Level Generalization** experiments across the four activities.
+These splits are used for **Activity-Level Generalization** experiments across the four activities: `<Activity>` is held out as the unseen test activity, and the train/validation splits of the other three activities are used for training and validation.
 
 **Files**:
-- `<activity_name>_crossdomain.json`
-- `<activity_name>_crossdomain_testonvalonly.json` *(recommended)*
-
-**Notes**:
-- JSON files are used to run the experiments  
-- CSV files provide lists of video metadata  
-- The `*_testonvalonly.json` file contains **only test samples from the validation split** of the unseen activity
+- `<Activity>_crossdomain_testonvalonly.json` *(recommended)*: the test set contains **only the validation split** of the unseen activity
+- `<Activity>_crossdomain.json`: the test set contains all videos of the unseen activity, grouped by task (`test_subactivity<XX>`)
 
 #### 4.2 Task-Level Generalization (In-Domain)
 
-**Directory**:
-splits/indomain_generalization
+**Directory**: `splits/indomain_generalization`
 
-**Description**:  
-These splits support **Task-Level Generalization** experiments within each activity.
+These splits support **Task-Level Generalization** experiments within each activity: task `<XX>` is held out as the unseen test task, and the remaining tasks of the same activity are split by participant into train and validation sets.
 
-**Files**:
-\<activity_name\>_subactivity<task_index>_data.json.
-Use these files to load the corresponding training and testing data.
+**Files**: `<Activity>_subactivity<XX>_data.json`. Use these files to load the corresponding training and testing data.
 
 #### 4.3 Within-Activity and Separate-Attempts Evaluation
 
-**Directory**:
-splits/separate_attempts
+**Directory**: `splits/separate_attempts`
 
-**Description**:
-- **Within-Activity Evaluation**:  
-  Provides baseline Struggle TAL performance within the same activity (vanilla setting).
-- **Separate Attempts Evaluation**:  
-  Investigates the effect of multiple attempts on Struggle TAL performance.
+- **Within-Activity Evaluation**: Provides baseline Struggle TAL performance within the same activity (vanilla setting).
+- **Separate Attempts Evaluation**: Investigates the effect of multiple attempts on Struggle TAL performance. Training videos are grouped by attempt (`train_attempt01` … `train_attempt05`).
 
-**File**:
-\<activity_name\>_sepattempt.json.
-Use this file to run both evaluation settings.
+**Files**:
+- `<Activity>_sepattempt.json`: use this file to run both evaluation settings.
+- `<Activity>_allattempts_sample0{1,2,3}.json`: training sets of the same size as a single attempt, sampled evenly from all five attempts with three different random seeds.
 
-<!--
-- Directory `splits/crossdomain_generalization` consists of the data splits for the **Activity-Level Generalization** experiments that correspond to the four activities. For running the experiments, the JSON files should be used while the CSV files are the lists of the video metadata. There are two JSON files: "<activity_name>_crossdomain.json" and "<activity_name>_crossdomain_testonvalonly.json", where the later one is recommended to used which only contains the test data that only belongs to the validation splits from the unseen activity. 
+## Repository Structure
 
-- Directory `splits/indomain_generalization` consists of the data splits for the **Task-Level Generalization** experiments corresponding to the four activities. Please use the files with the name in format "<activity_name>_subactivity<task_index>_data.json" to load the training and testing data for the experiments. 
+```
+EvoStruggle/
+├── annotations/            # Struggle annotations, one CSV per activity
+├── splits/
+│   ├── crossdomain_generalization/   # Activity-level generalization splits
+│   ├── indomain_generalization/      # Task-level generalization splits
+│   └── separate_attempts/            # Within-activity / separate-attempts splits
+├── tools/                  # Scripts for generating splits and extracting video features
+├── data/                   # Place the downloaded videos here (see data/README.md)
+├── extracted_features/     # Place extracted video features here (see extracted_features/README.md)
+├── LICENSE                 # Apache-2.0 (code)
+└── LICENSE-DATASET.md      # CC BY-NC 4.0 (dataset)
+```
 
-- Directory `splits/separate_attempts` consists of the data splits for both the **Within-Activity Evaluation** and the **Seperate Attempts** experiments where the former provides a baseline results of Struggle TAL within the same activity (vanilla setting) and the later is for investigating the effect of multiple attempts on the Struggle TAL task. Use "<activity_name>_sepattempt.json" for running the experiments. 
--->
-
-## How to Download
-
-### Option 1: Hugging Face Dataset (Recommended)
-
-**[Hugging Face Dataset](https://huggingface.co/datasets/Shijia2025/EvoStruggle)** - Contains 360p resized videos
-
-Please refer to [Downloading Datasets](https://huggingface.co/docs/hub/en/datasets-downloading) documents on Hugging Face to find the suitable command to download the dataset. 
-
----
-
-### Option 2: Baidu NetDisk / 百度网盘
-
-Choose between the full 1080p version or the compressed 360p version:
-
-- **[EvoStruggle_Dataset](https://pan.baidu.com/s/1WuCjys0tBzrS3O2OxttfWQ?pwd=wfak)** - Full download with original 1080p video recordings (1.18 TB)
-- **[new_struggle_dataset.tar.gz](https://pan.baidu.com/s/1b7HKdpTEapa0GiZaNKRrRQ?pwd=g67j)** - Compressed version with 360p resized videos (41.81 GB)
-
-**Note:** The Baidu NetDisk option provides higher resolution videos compared to the Hugging Face version.
-
+See [`tools/README.md`](tools/README.md) for how to use the scripts.
 
 ## Contributors
 
@@ -165,30 +270,41 @@ Choose between the full 1080p version or the compressed 360p version:
 * [Michael Wray](https://mwray.github.io/)
 * [Walterio Mayol-Cuevas](http://people.cs.bris.ac.uk/~wmayol/)
 
-## Citation to this work
+## Citation
 
-```
-@misc{feng2025evostruggledatasetcapturingevolution,
-      title={EvoStruggle: A Dataset Capturing the Evolution of Struggle across Activities and Skill Levels}, 
-      author={Shijia Feng and Michael Wray and Walterio Mayol-Cuevas},
-      year={2025},
-      eprint={2510.01362},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2510.01362}, 
-}
+If you use this dataset, please cite our paper:
 
+```bibtex
 @inproceedings{feng2026evostruggle,
-  title={Evostruggle: a dataset capturing the evolution of struggle across activities and skill levels},
+  title={{EvoStruggle}: A Dataset Capturing the Evolution of Struggle across Activities and Skill Levels},
   author={Feng, Shijia and Wray, Michael and Mayol-Cuevas, Walterio},
-  booktitle={International Conference on Pattern Recognition},
+  booktitle={International Conference on Pattern Recognition (ICPR)},
   pages={96--111},
   year={2026},
   organization={Springer}
 }
 ```
 
+arXiv version:
+
+```bibtex
+@misc{feng2025evostruggledatasetcapturingevolution,
+  title={{EvoStruggle}: A Dataset Capturing the Evolution of Struggle across Activities and Skill Levels},
+  author={Shijia Feng and Michael Wray and Walterio Mayol-Cuevas},
+  year={2025},
+  eprint={2510.01362},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2510.01362}
+}
+```
+
 ## License
-The code in this repository is released under the Apache-2.0 License (see `LICENSE`).
-The EvoStruggle dataset is released under CC BY-NC 4.0 (see `LICENSE-DATASET.md`).
+
+The code in this repository is released under the Apache-2.0 License (see [`LICENSE`](LICENSE)).
+The EvoStruggle dataset (videos, annotations and splits) is released under CC BY-NC 4.0 (see [`LICENSE-DATASET.md`](LICENSE-DATASET.md)).
 If you use this dataset, please cite our paper.
+
+## Contact
+
+For questions, bug reports, or requests, please [open an issue](https://github.com/FELIXFENG2019/EvoStruggle/issues) in this repository.
