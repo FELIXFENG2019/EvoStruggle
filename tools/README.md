@@ -10,13 +10,15 @@ pip install -r tools/requirements.txt
 
 ## Data Splits
 
-The split files in [`splits/`](../splits) are already provided; these scripts are only needed to regenerate or modify them.
+The split files in [`splits/`](../splits) are the **official splits** used in the paper. Always use them for training and evaluation so that results stay comparable and reproducible.
 
-> **Note:** Please use the provided split files when comparing with the results in the paper. The participant-level train/validation split in `indomain_generalization_split_generator.py` depends on the pandas/scikit-learn versions, so re-running it with recent library versions does not reproduce the released files exactly.
+These scripts are only needed to inspect how the splits were built or to create new splits. To avoid overwriting the official splits, they **read** from `annotations/` and `splits/` but **write** to `regenerated_splits/` by default (git-ignored).
 
-| Script | Output | Example |
+> **Note:** The participant-level train/validation split in `indomain_generalization_split_generator.py` depends on the pandas/scikit-learn versions, so re-running it with recent library versions does not reproduce the released files exactly. Do not replace the files in `splits/` with regenerated ones.
+
+| Script | Output (under `regenerated_splits/`) | Example |
 |--------|--------|---------|
-| `indomain_generalization_split_generator.py` | `splits/indomain_generalization/<Activity>/` (CSVs + `<Activity>_subactivity<XX>_data.json`) | `python tools/indomain_generalization_split_generator.py -domain_name Origami -annotation_file origami_tsa_full.csv` |
+| `indomain_generalization_split_generator.py` | `indomain_generalization/<Activity>/` (CSVs + `<Activity>_subactivity<XX>_data.json`) | `python tools/indomain_generalization_split_generator.py -domain_name Origami -annotation_file origami_tsa_full.csv` |
 | `crossdomain_generalization_split_generator.py` | `<Activity>_crossdomain.json` | `python tools/crossdomain_generalization_split_generator.py -domain_name Origami` |
 | `crossdomain_generalization_split_generator2.py` | `<Activity>_crossdomain_testonvalonly.json` | `python tools/crossdomain_generalization_split_generator2.py -domain_name Origami` |
 | `separate_attempts_split_generator.py` | `<Activity>_sepattempt.json` | `python tools/separate_attempts_split_generator.py -domain_name Origami` |
@@ -24,7 +26,7 @@ The split files in [`splits/`](../splits) are already provided; these scripts ar
 
 `-domain_name` is one of `Origami`, `Shuffle_Cards`, `Tangram`, `Tying_Knots`.
 
-The cross-domain and separate-attempts scripts read the train/validation CSV files that are already in the corresponding `splits/` directories.
+The cross-domain and separate-attempts scripts read the train/validation CSV files of the official splits in `splits/`.
 
 ## Video Features
 

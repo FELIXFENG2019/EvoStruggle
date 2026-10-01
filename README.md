@@ -185,6 +185,8 @@ This repository can be used to reproduce the experimental results reported in th
 
 We provide **three types of data splits** for different training and evaluation settings (see *Figure 6* in the paper for a visual overview).
 
+> **Note:** The files in `splits/` are the official splits used in the paper. Please use them as provided so that results are comparable with the paper and with other work.
+
 All JSON split files share the same structure:
 
 ```json

@@ -11,7 +11,7 @@ REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 parser = argparse.ArgumentParser(description='Codes for splitting the train/validation/test data for training on separate attempts')
 parser.add_argument('-domain_name', '-dname', type=str, default="Origami", choices=['Origami', 'Shuffle_Cards', 'Tangram', 'Tying_Knots'])
 parser.add_argument('-split_path', '-spath', type=str, default=os.path.join(REPO_ROOT, 'splits', 'separate_attempts'))
-parser.add_argument('-save_path', '-save', type=str, default=os.path.join(REPO_ROOT, 'splits', 'separate_attempts'))
+parser.add_argument('-save_path', '-save', type=str, default=os.path.join(REPO_ROOT, 'regenerated_splits', 'separate_attempts'))
 args = parser.parse_args()
 
 

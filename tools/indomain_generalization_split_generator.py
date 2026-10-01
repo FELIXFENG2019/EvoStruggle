@@ -16,7 +16,7 @@ parser.add_argument('-domain_name', '-dname', type=str, default="Origami", choic
 parser.add_argument('-annotation_path', '-ann', type=str, default=os.path.join(REPO_ROOT, 'annotations'))
 parser.add_argument('-annotation_file', '-annfile', type=str, default="origami_tsa_full.csv", 
                     choices=['origami_tsa_full.csv', 'shufflecards_tsa_full.csv', 'tangram_tsa_full.csv', 'tyingknots_tsa_full.csv'])
-parser.add_argument('-save_path', '-save', type=str, default=os.path.join(REPO_ROOT, 'splits', 'indomain_generalization'))
+parser.add_argument('-save_path', '-save', type=str, default=os.path.join(REPO_ROOT, 'regenerated_splits', 'indomain_generalization'))
 parser.add_argument('-seed', type=int, default=42)
 parser.add_argument('-trainval_split_ratio', '-splitrate', type=float, default=0.2)
 args = parser.parse_args()
@@ -141,9 +141,9 @@ for subactivity in df['subactivityID'].unique():
 print("Done!")
 
 # Run this script with the following command:
-# python indomain_generalization_split_generator.py -domain_name Origami -annotation_path ../annotations/ -annotation_file origami_tsa_full.csv -save_path ../splits/indomain_generalization/
-# python indomain_generalization_split_generator.py -domain_name Shuffle_Cards -annotation_path ../annotations/ -annotation_file shufflecards_tsa_full.csv -save_path ../splits/indomain_generalization/
-# python indomain_generalization_split_generator.py -domain_name Tangram -annotation_path ../annotations/ -annotation_file tangram_tsa_full.csv -save_path ../splits/indomain_generalization/
-# python indomain_generalization_split_generator.py -domain_name Tying_Knots -annotation_path ../annotations/ -annotation_file tyingknots_tsa_full.csv -save_path ../splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Origami -annotation_path ../annotations/ -annotation_file origami_tsa_full.csv -save_path ../regenerated_splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Shuffle_Cards -annotation_path ../annotations/ -annotation_file shufflecards_tsa_full.csv -save_path ../regenerated_splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Tangram -annotation_path ../annotations/ -annotation_file tangram_tsa_full.csv -save_path ../regenerated_splits/indomain_generalization/
+# python indomain_generalization_split_generator.py -domain_name Tying_Knots -annotation_path ../annotations/ -annotation_file tyingknots_tsa_full.csv -save_path ../regenerated_splits/indomain_generalization/
 
     

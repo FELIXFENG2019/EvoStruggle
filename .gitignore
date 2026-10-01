@@ -5,5 +5,5 @@ __pycache__/
 data/**/*.mp4
 extracted_features/**/*.npy
 
-# Plots written by tools/indomain_generalization_split_generator.py
-splits/indomain_generalization/**/*.png
+# Output of the split generator scripts (kept apart from the official splits/)
+regenerated_splits/
