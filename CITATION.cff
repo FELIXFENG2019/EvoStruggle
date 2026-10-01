@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "EvoStruggle: A Dataset Capturing the Evolution of Struggle across Activities and Skill Levels"
+type: dataset
+authors:
+  - family-names: Feng
+    given-names: Shijia
+  - family-names: Wray
+    given-names: Michael
+  - family-names: Mayol-Cuevas
+    given-names: Walterio
+repository-code: "https://github.com/FELIXFENG2019/EvoStruggle"
+url: "https://huggingface.co/datasets/Shijia2025/EvoStruggle"
+license: CC-BY-NC-4.0
+keywords:
+  - struggle determination
+  - temporal action localization
+  - egocentric video
+  - skill assessment
+  - dataset
+preferred-citation:
+  type: conference-paper
+  title: "EvoStruggle: A Dataset Capturing the Evolution of Struggle across Activities and Skill Levels"
+  authors:
+    - family-names: Feng
+      given-names: Shijia
+    - family-names: Wray
+      given-names: Michael
+    - family-names: Mayol-Cuevas
+      given-names: Walterio
+  collection-title: "International Conference on Pattern Recognition (ICPR)"
+  publisher:
+    name: Springer
+  start: 96
+  end: 111
+  year: 2026
+  url: "https://arxiv.org/abs/2510.01362"
+  identifiers:
+    - type: other
+      value: "arXiv:2510.01362"
+      description: arXiv preprint
